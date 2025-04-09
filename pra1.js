@@ -1,5 +1,5 @@
 class Film {
-    //declaración de los campos privados al principio de la clase como recomendación (si no VS subraya las propiedades como dando un warning)
+    //declaración de las propiedades o campos privados al principio de la clase como recomendación (si no VS subraya las propiedades como dando un warning)
     #id;
     #title;
     #overview;
@@ -10,6 +10,7 @@ class Film {
     #vote_count;
     #genre_ids;
 
+    //Asigna parámetros a las propiedades o campos privados internos
     constructor(id, title, overview, popularity, poster_path, release_date, vote_average, vote_count, genre_ids) {
         this.#id = id; //identificador único
         this.#title = title; //título de la película
@@ -22,16 +23,17 @@ class Film {
         this.#genre_ids = genre_ids; //Lista de géneros por los que se ha clasificado la película
     }
 
-    //getters y setters
+    //Getters (controlan lectura) y Setters (controlan escritura + la validación)
 
-    get id() {
+    get id() {  //Definimos getters públicos para que no se tengan acceso a los originales y que no puedan ser manipulados desde afuera, actúan como barrera
         return this.#id;
     }
-    set id(newId) {
+    //encapsulamos una lógica mínima que queremos conseguir, en este caso que sea un tipo number y que sea positivo, la lógica de validación
+    set id(newId) { //Definimos los setters de manera pública también  
         if (typeof newId === 'number' && newId >= 0) {
             this.#id = newId;
         } else {
-            console.error("El ID es inválido:", newId);
+            console.error("id es inválido: ", newId);
         }
     }
 
@@ -42,7 +44,7 @@ class Film {
         if (typeof newTitle === 'string') {
             this.#title = newTitle;
         } else {
-            console.error("El título es inválido:", newTitle);
+            console.error("title es inválido: ", newTitle);
         }
     }
 
@@ -54,7 +56,7 @@ class Film {
         if (typeof newOverview === 'string') {
             this.#overview = newOverview;
         } else {
-            console.error("El Overview es inválido:", newOverview);
+            console.error("overview es inválido: ", newOverview);
         }
     }
 
@@ -66,7 +68,7 @@ class Film {
         if (typeof newPopularity === 'number' && newPopularity >= 0) {
             this.#popularity = newPopularity;
         } else {
-            console.error("La Popularidad es inválida:", newPopularity);
+            console.error("popularity es inválida: ", newPopularity);
         }
     }
 
@@ -83,7 +85,7 @@ class Film {
         if (typeof newReleaseDate === 'string' && dateFormatRegex.test(newReleaseDate)) {
             this.#release_date = newReleaseDate;
         } else {
-            console.error("Release date inválida o formato no es YYYY-MM-DD:", newReleaseDate);
+            console.error("release_date inválida el formato no es YYYY-MM-DD: ", newReleaseDate);
         }
     }
 
@@ -91,6 +93,37 @@ class Film {
         return this.#vote_average;
     }
 
+    set vote_average(newVoteAverage) {
+        if (typeof newVoteAverage === 'number' && newVoteAverage >= 0 && newVoteAverage <= 10) {
+            this.#vote_average = newVoteAverage;
+        } else {
+            console.error("vote_average es inválido o está fuera del rango: ", newVoteAverage);
+        }
+    }
+
+    get vote_count() {
+        return this.#vote_count;
+    }
+
+    set vote_count(newVoteCount) {
+        if (typeof newVoteCount === 'number' && newVoteCount >= 0) {
+            this.#vote_count = newVoteCount;
+        } else {
+            console.error("vote_count es inválido: ", newVoteCount);
+        }
+    }
+
+    get genre_ids() {
+        return this.#genre_ids;
+    }
+
+    set genre_ids(newGenreIds) {
+        if (Array.isArray(newGenreIds)) {
+            this.#genre_ids = newGenreIds
+        } else {
+            console.error("genre_ids no es un array: ", newGenreIds);
+        }
+    }
 }
 
 class FilmList {
