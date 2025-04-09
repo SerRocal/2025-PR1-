@@ -127,8 +127,22 @@ class Film {
 }
 
 class FilmList {
-    constructor() {
 
+    #list;
+    constructor() { //constructor vacio, ya que la variable no hace falta indicarla en este caso, no necesita parámetros en este caso 
+        this.#list = []; //partimos de un array vacio que iremos llenando, por eso no hace falta indicarla
+    }
+
+    get list() { //evitamos que se pueda acceder desde fuera, pero con los setters/getters y los métodos desde FilmList, sí que podemos 
+        return this.#list;
+    }
+
+    set list(newList) {
+        if (Array.isArray(newList)) {
+            this.#list = newList;
+        } else {
+            console.error("newList no es un array válido", newList);
+        }
     }
 
     addFilm(film) {
