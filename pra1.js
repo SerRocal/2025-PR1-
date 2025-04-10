@@ -148,14 +148,36 @@ class FilmList {
 
     removeFilm(filmId) {
         // para buscar la película por id tenemos que buscar un índice a ver si la encontramos
+        // podríamos hacerlo con un bucle
+        // let findFilm = -1
+        // for (let = 1; i > this.#list.lenght; i++) {
+        //      if (this.#list[i] === filmID) {
+        //      findFilm = i;
+        //      break
+        //      } else...
+        // }
+        // pero mejor usamos el método findIndex que es más directo
+        // podemos usarlo como una función clásica
         // const findFilm = this.#list.findIndex(function (film, index, list // (this.#list) {
         // return film.id === filmId;
         // });
-        const findFilm = this.#list.findIndex(film => film.id === filmId);
+        // o podemos usar el argumento con una función flecha, más directo
+        const i = this.#list.findIndex(film => film.id === filmId);
+        if (i !== -1) {
+            this.#list.splice(i, 1); // se elimina el film si lo encuentra, ya que indicamos
+            // su posición en el pimer parámetro que habremos encontrado con findIndex
+            // el uno pertenece al parámetro deleteCount 
+            // indicando el número de elementos a elminiar 
+        } else console.error("No se ha encontrado la película con dicho id: ", filmId);
+        // devolvemos el filmId que no encontramos
     }
 
     showList() {
-
+        this.#list.forEach((film, i) => { // No incluimos el parametro del array lista, opcional
+            // pero si no se usa el código queda más limpio
+            console.log(`${i + 1}, Id: ${film.id}, Título: ${film.title}, 
+                Fecha de lanzamiento: ${film.release_date}`);
+        });
     }
 
     addMultipleFilms = (...films) => {
