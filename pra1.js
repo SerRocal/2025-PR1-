@@ -126,6 +126,9 @@ class Film {
     }
 }
 
+// 2º Creación de la Clase FilmList (5 puntos)
+// -------------------------------------------
+
 class FilmList {
 
     #list;
@@ -180,18 +183,34 @@ class FilmList {
         });
     }
 
+    // 3º Función flecha (5 puntos)
+    // ----------------------------
+
     addMultipleFilms = (...films) => {
+        films.forEach(film => this.addFilm(film)); // con rest usamos for.each para recorrer todo el array de películas que queremos insertar
+        // en cada interacción lo asignamos al parámetro de la función flecha que usa la función addFilm para agregarlo a nuestro array de 
+        // películas interno (this.#list)
 
     }
 
-
     getFilmsByDateRange = (startDate, endDate) => {
+        return this.#list.filter(film =>
+            film.release_date >= startDate && film.release_date <= endDate) // definimos una lógica que esté dentro del rango seleccionado
+        // más de la date inicial y menos que la final, cumpliendose las dos condiciones para que estén incluidas las películas que queremos
 
     }
 
     sortFilmsByPopularity = () => {
-
+        this.#list.sort((filmA, filmB) => filmA.popularity - filmB.popularity) // el método short utiliza dos valores para ir 
+        // comparando e ir reordenándose este método modifica el array original y 
+        // lo ordena en este caso por popularidad para ordenarlos se usa un método simple 
+        // - un numero negativo a debe ir antes que b, filmA = 9.8, filmB 8.1 A va delante de B
+        // - cero si a y b son considerados iguales en orden, un número
+        // - positivo a debe ir después de b filmA = 7.8, filmB 8.1 B va delante de A, se reordena
     }
+
+    // 4º Función recursiva (5 puntos)
+    // -------------------------------
 
     findFilmById() {
         //Función recursiva
