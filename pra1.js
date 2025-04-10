@@ -133,25 +133,25 @@ class FilmList {
         this.#list = []; //partimos de un array vacio que iremos llenando, por eso no hace falta indicarla
     }
 
-    get list() { //evitamos que se pueda acceder desde fuera, pero con los setters/getters y los métodos desde FilmList, sí que podemos 
+    get list() { // #list es privado, pero métodos internos como este getter sí pueden acceder
         return this.#list;
     }
 
-    set list(newList) {
-        if (Array.isArray(newList)) {
-            this.#list = newList;
+    addFilm(film) {
+        if (!(film instanceof Film)) {
+            console.error("El film que intentas añadir no es una instancia de FILM ", film)
+            return
         } else {
-            console.error("newList no es un array válido", newList);
+            return this.#list.push(film); // como estamos dentro de la misma clase vamos directos a la propiedad privada
         }
     }
 
-    addFilm(film) {
-
-    };
-
-
     removeFilm(filmId) {
-
+        // para buscar la película por id tenemos que buscar un índice a ver si la encontramos
+        // const findFilm = this.#list.findIndex(function (film, index, list // (this.#list) {
+        // return film.id === filmId;
+        // });
+        const findFilm = this.#list.findIndex(film => film.id === filmId);
     }
 
     showList() {
