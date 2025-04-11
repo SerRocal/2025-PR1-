@@ -364,3 +364,36 @@ if (notFoundFilm) {
 } else {
     console.log("Película no encontrada.");
 }
+
+console.log("\n---------------------------------\n");
+console.log("Comprobación 5º bloque")
+console.log("\n---------------------------------\n");
+
+console.log("## Probando getMostCommonGenre ##");
+myFilmList.getMostCommonGenre(); // Ejercicio sin hacer
+
+console.log("\n---------------------------------\n");
+console.log("Comprobación 6º bloque")
+console.log("\n---------------------------------\n");
+
+console.log("\n## Probando getPopularFilmTitles ##");
+const minVoteAvg = 8.5;
+console.log(`Buscando títulos con voto medio >= ${minVoteAvg}...`);
+console.log("Títulos populares:", myFilmList.getPopularFilmTitles(minVoteAvg)); // Debería incluir Inception, Dark Knight, Parasite (Pulp Fiction ya fue eliminada)
+
+const highMinVoteAvg = 9.5;
+console.log(`\nBuscando títulos con voto medio >= ${highMinVoteAvg}...`);
+console.log("Títulos muy populares:", myFilmList.getPopularFilmTitles(highMinVoteAvg)); // Queda vacío
+
+console.log("\n---------------------------------\n");
+console.log("## Fin de las Pruebas ##");
+
+// --- Fin Código de Prueba ---
+
+
+
+
+
+
+
+
