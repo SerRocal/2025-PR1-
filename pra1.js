@@ -293,9 +293,10 @@ console.log(film4.title);
 console.log(film5.title);
 
 console.log("\n---------------------------------\n");
+console.log("Comprobación 2º bloque")
+console.log("\n---------------------------------\n");
 
-
-console.log("### Creando y Poblando FilmList ###");
+console.log("## Creando y Poblando FilmList ##");
 const myFilmList = new FilmList();
 
 console.log("Añadiendo Las películas...");
@@ -310,7 +311,42 @@ myFilmList.addFilm({ id: 999, title: "Not a Film Object" }); // Debería mostrar
 myFilmList.showList();
 
 myFilmList.removeFilm(103);
-myFilmList.removeFilm(103);
+console.log("Eliminando 'Pulp Fiction' (ID: 103)...");
+myFilmList.removeFilm(104);
+console.log("Eliminando 'Dune: Part Two' (ID: 104)...");
 
 myFilmList.showList();
+console.log("\nIntentando eliminar película inexistente (ID: 999)...");
+myFilmList.removeFilm(999); // Debería mostrar error
+myFilmList.showList(); // La lista no debería cambiar
+
+console.log("\n---------------------------------\n");
+console.log("Comprobación 3º bloque")
+console.log("\n---------------------------------\n");
+
+console.log("## addMultipleFilms ##");
+myFilmList.addMultipleFilms(film3, film4);
+
+myFilmList.showList();
+
+console.log("## Probando getFilmsByDateRange ##");
+const startDate = "2010-01-01";
+const endDate = "2020-12-31";
+console.log(`Buscando películas entre ${startDate} y ${endDate}...`);
+const filmsInRange = myFilmList.getFilmsByDateRange(startDate, endDate);
+console.log("Películas encontradas en rango:", filmsInRange.map(f => f.title));
+console.log("\n---------------------------------\n");
+
+
+console.log("## Probando sortFilmsByPopularity ##");
+console.log("Ordenando por popularidad (descendente)...");
+myFilmList.sortFilmsByPopularity();
+myFilmList.showList();
+
+console.log("\n---------------------------------\n");
+console.log("Comprobación 4º bloque")
+console.log("\n---------------------------------\n");
+
+
+
 
