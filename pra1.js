@@ -178,8 +178,7 @@ class FilmList {
     showList() {
         this.#list.forEach((film, i) => { // No incluimos el parametro del array lista, opcional
             // pero si no se usa el código queda más limpio
-            console.log(`${i + 1}, Id: ${film.id}, Título: ${film.title}, 
-                Fecha de lanzamiento: ${film.release_date}`);
+            console.log(`${i + 1}, Id: ${film.id}, Título: ${film.title}, Fecha de lanzamiento: ${film.release_date}`);
         });
     }
 
@@ -268,7 +267,7 @@ class FilmList {
 
 // --- Inicio Código de Prueba ---
 
-console.log("### Creando Instancias de Películas ###");
+console.log("## Creando Instancias de Películas ##");
 const film1 = new Film(101, "Inception", "Un ladrón que roba secretos corporativos...", 436, "/inception.jpg", "2010-07-16", 8.8, 3500, [28, 878, 12, 53]);
 const film2 = new Film(102, "The Dark Knight", "Batman se enfrenta al Joker...", 901, "/dark_knight.jpg", "2008-07-18", 9.0, 13100, [28, 80, 18, 53]);
 const film3 = new Film(103, "Pulp Fiction", "Las vidas de dos sicarios...", 1456, "/pulp_fiction.jpg", "1994-10-14", 8.9, 12600, [53, 80, 18]);
@@ -285,7 +284,7 @@ const GENERO_MAPA = {
 };
 */
 
-console.log("Películas creadas:");
+console.log("\nPelículas creadas:");
 console.log(film1.title);
 console.log(film2.title);
 console.log(film3.title);
@@ -299,26 +298,28 @@ console.log("\n---------------------------------\n");
 console.log("## Creando y Poblando FilmList ##");
 const myFilmList = new FilmList();
 
-console.log("Añadiendo Las películas...");
+console.log("Añadiendo Las películas y mostrándolas...");
 myFilmList.addFilm(film1);
 myFilmList.addFilm(film2);
 myFilmList.addFilm(film3);
 myFilmList.addFilm(film4);
 myFilmList.addFilm(film5);
-console.log("Intentando añadir algo que no es Film...");
-myFilmList.addFilm({ id: 999, title: "Not a Film Object" }); // Debería mostrar error
+myFilmList.showList();
+
+console.log("\nIntentando añadir algo que no es Film...");
+myFilmList.addFilm({ id: 999, title: "Not a Film Object" }); // Muestra error
 
 myFilmList.showList();
 
 myFilmList.removeFilm(103);
-console.log("Eliminando 'Pulp Fiction' (ID: 103)...");
+console.log("\nEliminando 'Pulp Fiction' (ID: 103)...");
 myFilmList.removeFilm(104);
 console.log("Eliminando 'Dune: Part Two' (ID: 104)...");
 
 myFilmList.showList();
 console.log("\nIntentando eliminar película inexistente (ID: 999)...");
-myFilmList.removeFilm(999); // Debería mostrar error
-myFilmList.showList(); // La lista no debería cambiar
+myFilmList.removeFilm(999); // Muestra error
+myFilmList.showList(); // La lista no cambia
 
 console.log("\n---------------------------------\n");
 console.log("Comprobación 3º bloque")
@@ -329,17 +330,15 @@ myFilmList.addMultipleFilms(film3, film4);
 
 myFilmList.showList();
 
-console.log("## Probando getFilmsByDateRange ##");
+console.log("\n## Probando getFilmsByDateRange ##");
 const startDate = "2010-01-01";
 const endDate = "2020-12-31";
 console.log(`Buscando películas entre ${startDate} y ${endDate}...`);
 const filmsInRange = myFilmList.getFilmsByDateRange(startDate, endDate);
 console.log("Películas encontradas en rango:", filmsInRange.map(f => f.title));
-console.log("\n---------------------------------\n");
 
-
-console.log("## Probando sortFilmsByPopularity ##");
-console.log("Ordenando por popularidad (descendente)...");
+console.log("\n## Probando sortFilmsByPopularity ##");
+console.log("\nOrdenando por popularidad (descendente)...");
 myFilmList.sortFilmsByPopularity();
 myFilmList.showList();
 
@@ -347,6 +346,21 @@ console.log("\n---------------------------------\n");
 console.log("Comprobación 4º bloque")
 console.log("\n---------------------------------\n");
 
+console.log("\n## Probando findFilmById (Recursiva) ##");
+const filmToFindId = 101; // Inception
+console.log(`Buscando película con ID: ${filmToFindId}...`);
+const foundFilm = myFilmList.findFilmById(filmToFindId);
+if (foundFilm) {
+    console.log("Película encontrada:", foundFilm.title);
+} else {
+    console.log("Película no encontrada.");
+}
 
-
-
+const nonExistentId = 998;
+console.log(`Buscando película con ID: ${nonExistentId}...`);
+const notFoundFilm = myFilmList.findFilmById(nonExistentId);
+if (notFoundFilm) {
+    console.log("Película encontrada:", notFoundFilm.title); // No se ejecuta
+} else {
+    console.log("Película no encontrada.");
+}
