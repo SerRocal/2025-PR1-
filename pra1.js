@@ -295,3 +295,22 @@ console.log(film5.title);
 console.log("\n---------------------------------\n");
 
 
+console.log("### Creando y Poblando FilmList ###");
+const myFilmList = new FilmList();
+
+console.log("Añadiendo Las películas...");
+myFilmList.addFilm(film1);
+myFilmList.addFilm(film2);
+myFilmList.addFilm(film3);
+myFilmList.addFilm(film4);
+myFilmList.addFilm(film5);
+console.log("Intentando añadir algo que no es Film...");
+myFilmList.addFilm({ id: 999, title: "Not a Film Object" }); // Debería mostrar error
+
+myFilmList.showList();
+
+myFilmList.removeFilm(103);
+myFilmList.removeFilm(103);
+
+myFilmList.showList();
+
