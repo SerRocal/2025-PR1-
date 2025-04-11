@@ -266,7 +266,32 @@ class FilmList {
 
 }
 
+// --- Inicio Código de Prueba ---
 
+console.log("### Creando Instancias de Películas ###");
+const film1 = new Film(101, "Inception", "Un ladrón que roba secretos corporativos...", 436, "/inception.jpg", "2010-07-16", 8.8, 3500, [28, 878, 12, 53]);
+const film2 = new Film(102, "The Dark Knight", "Batman se enfrenta al Joker...", 901, "/dark_knight.jpg", "2008-07-18", 9.0, 13100, [28, 80, 18, 53]);
+const film3 = new Film(103, "Pulp Fiction", "Las vidas de dos sicarios...", 1456, "/pulp_fiction.jpg", "1994-10-14", 8.9, 12600, [53, 80, 18]);
+const film4 = new Film(104, "Dune: Part Two", "Paul Atreides se une a los Fremen...", 912, "/dune2.jpg", "2024-03-01", 8.4, 9000, [878, 12, 14, 28]);
+const film5 = new Film(105, "Parasite", "Una familia pobre se infiltra...", 1089, "/parasite.jpg", "2019-05-30", 8.5, 11700, [35, 53, 18]);
 
+// Mapa de Referencia para IDs de Género (TMDb)
+// ==========================================
+/*
+const GENERO_MAPA = {
+    28: 'Acción', 12: 'Aventura', 35: 'Comedia',
+    80: 'Crimen', 18: 'Drama', 14: 'Fantasia', 
+    878: 'Ciencia ficción', 53: 'Suspense'
+};
+*/
+
+console.log("Películas creadas:");
+console.log(film1.title);
+console.log(film2.title);
+console.log(film3.title);
+console.log(film4.title);
+console.log(film5.title);
+
+console.log("\n---------------------------------\n");
 
 
