@@ -229,14 +229,44 @@ class FilmList {
     // 5º Función recursiva (5 puntos)
     // -------------------------------
 
+
+    //Crea una función llamada getMostCommonGenre que analice todas las películas y 
+    // determina el género que más se repite, utilizando el método de Array reduce.
     getMostCommonGenre() {
         //Uso de reduce
+
     }
 
-    getPopularFilmTitles() {
+    // 6º Función recursiva (5 puntos)
+    // -------------------------------
+
+    //Escribe una función llamada getPopularFilmTitles que tomará un array de películas 
+    // y valor de votos mínimo, y devolverá un array con los títulos de las películas que superan ese valor
+    // mínimo de votos. 
+    // Utiliza filter para seleccionar las películas cuyo valor de votación medio es mayor 
+    // o igual al valor de votos mínimo y map para extraer solo los títulos de esas películas.
+
+    getPopularFilmTitles(minVote) { //añadimos un parámetro ya que queremos saber
+        // las películas que hay con un mínimo de votos para filtrarlas
         //Uso de map y filter
+        const filteredFilms = this.#list.filter(film => film.vote_average >= minVote); // Se crea una función flecha con filter 
+        // para filtrar el umbral que decidimos como filtro
+        const titledFilms = filteredFilms.map(film => film.title); // Se crea una función map para añadir, de los filtrados, los títulos
+        return titledFilms;
     }
+
+    // Investigando me he encontrado que esta expresión se puede reducir así:
+    // getPopularFilmTitles(minVote) {
+    //  return this.#list
+    //      .filter(film => film.vote_average >= minVote)
+    //      .map(film => film.title);
+    //  }
+    // Esta sintaxis se define como Encadenamiento de métodos (method chaining)
+    // donde el punto . conecta las llamadas de filter y map (indicando que continúa el siguiente método en la instrucción)
+
 }
+
+
 
 
 
