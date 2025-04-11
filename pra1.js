@@ -170,7 +170,7 @@ class FilmList {
             this.#list.splice(i, 1); // se elimina el film si lo encuentra, ya que indicamos
             // su posición en el pimer parámetro que habremos encontrado con findIndex
             // el uno pertenece al parámetro deleteCount 
-            // indicando el número de elementos a elminiar 
+            // indicando el número de elementos a eliminar 
         } else console.error("No se ha encontrado la película con dicho id: ", filmId);
         // devolvemos el filmId que no encontramos
     }
@@ -201,7 +201,7 @@ class FilmList {
     }
 
     sortFilmsByPopularity = () => {
-        this.#list.sort((filmA, filmB) => filmA.popularity - filmB.popularity) // el método short utiliza dos valores para ir 
+        this.#list.sort((filmA, filmB) => filmB.popularity - filmA.popularity) // el método short utiliza dos valores para ir 
         // comparando e ir reordenándose este método modifica el array original y 
         // lo ordena en este caso por popularidad para ordenarlos se usa un método simple 
         // - un numero negativo a debe ir antes que b, filmA = 9.8, filmB 8.1 A va delante de B
@@ -212,9 +212,22 @@ class FilmList {
     // 4º Función recursiva (5 puntos)
     // -------------------------------
 
-    findFilmById() {
-        //Función recursiva
+    // Crea una función recursiva llamada findFilmById que busque 
+    // una película dentro en unaestructura de tipo FilmList por su ID.
+    findFilmById(filmId, currentIndex = 0) {
+        if (currentIndex >= this.#list.length) return null;
+        else if (this.#list[currentIndex].id === filmId) return this.#list[currentIndex];
+        // this.#list[currentIndex].id; 
+        // this: nuestro objeto (FilmList) actual, 
+        // this.#list: accedemos a su campo privado #list definido en el constructor (array con todos los objetos Film)
+        // nos da el array completo que pertenece a esta instancia
+        // this.#list[currentIndex]: Accedemos al elemento posición específica (nos movemos en el array)
+        // this.#list[currentIndex].id: Accedemos a la propiedad del elemento de la posición específica (su id)
+        return this.findFilmById(filmId, currentIndex + 1)
     }
+
+    // 5º Función recursiva (5 puntos)
+    // -------------------------------
 
     getMostCommonGenre() {
         //Uso de reduce
