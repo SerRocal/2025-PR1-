@@ -1,4 +1,4 @@
-class Film {
+class Film { // Representa una película. Usa campos privados (#) para encapsular datos y getters/setters para acceso controlado
     //declaración de las propiedades o campos privados al principio de la clase como recomendación (si no VS subraya las propiedades como dando un warning)
     #id;
     #title;
@@ -21,6 +21,8 @@ class Film {
         this.#vote_average = vote_average; //Promedio de votos
         this.#vote_count = vote_count; //Número de votos
         this.#genre_ids = genre_ids; //Lista de géneros por los que se ha clasificado la película
+        // 'this' aquí se refiere al nuevo objeto Film que se está creando
+        // Asignación de parámetros a los campos privados de 'this'
     }
 
     //Getters (controlan lectura) y Setters (controlan escritura + la validación)
@@ -131,8 +133,9 @@ class Film {
 
 class FilmList {
 
-    #list;
+    #list; // Campo privado para almacenar el array de Films
     constructor() { //constructor vacio, ya que la variable no hace falta indicarla en este caso, no necesita parámetros en este caso 
+        // this, instancia de FilmList
         this.#list = []; //partimos de un array vacio que iremos llenando, por eso no hace falta indicarla
     }
 
@@ -185,6 +188,7 @@ class FilmList {
     // 3º Función flecha (5 puntos)
     // ----------------------------
 
+    // Añade una o más películas a la lista usando el método addFilm.
     addMultipleFilms = (...films) => {
         films.forEach(film => this.addFilm(film)); // con rest usamos for.each para recorrer todo el array de películas que queremos insertar
         // en cada interacción lo asignamos al parámetro de la función flecha que usa la función addFilm para agregarlo a nuestro array de 
@@ -192,7 +196,9 @@ class FilmList {
 
     }
 
+    // Devuelve un NUEVO array filtrado por rango de fechas.
     getFilmsByDateRange = (startDate, endDate) => {
+        // filter() devuelve un array nuevo, no modifica this.#list.
         return this.#list.filter(film =>
             film.release_date >= startDate && film.release_date <= endDate) // definimos una lógica que esté dentro del rango seleccionado
         // más de la date inicial y menos que la final, cumpliendose las dos condiciones para que estén incluidas las películas que queremos
@@ -200,6 +206,7 @@ class FilmList {
     }
 
     sortFilmsByPopularity = () => {
+        // sort() modifica el array this.#list original directamente
         this.#list.sort((filmA, filmB) => filmB.popularity - filmA.popularity) // el método short utiliza dos valores para ir 
         // comparando e ir reordenándose este método modifica el array original y 
         // lo ordena en este caso por popularidad para ordenarlos se usa un método simple 
@@ -233,6 +240,7 @@ class FilmList {
     // determina el género que más se repite, utilizando el método de Array reduce.
     getMostCommonGenre() {
         //Uso de reduce
+        // método omitido en esta implementación.
 
     }
 
@@ -247,7 +255,8 @@ class FilmList {
 
     getPopularFilmTitles(minVote) { //añadimos un parámetro ya que queremos saber
         // las películas que hay con un mínimo de votos para filtrarlas
-        //Uso de map y filter
+        // Uso de map y filter
+        // 'this.#list' es accesible por ser un método de instancia.
         const filteredFilms = this.#list.filter(film => film.vote_average >= minVote); // Se crea una función flecha con filter 
         // para filtrar el umbral que decidimos como filtro
         const titledFilms = filteredFilms.map(film => film.title); // Se crea una función map para añadir, de los filtrados, los títulos
