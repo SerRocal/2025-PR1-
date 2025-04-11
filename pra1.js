@@ -1,3 +1,5 @@
+// Alumno Sergio Rodríguez Calvo - Abril 2025 - 76513 - Aula 1
+
 class Film { // Representa una película. Usa campos privados (#) para encapsular datos y getters/setters para acceso controlado
     //declaración de las propiedades o campos privados al principio de la clase como recomendación (si no VS subraya las propiedades como dando un warning)
     #id;
